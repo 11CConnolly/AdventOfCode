@@ -7,6 +7,22 @@ namespace AoC
 {
     class Day2
     {
+        /*
+         * Learned from this Challenge
+         * Regex uses the Match keyword and requies an absolute string for the pattern
+         * From a match, you can use match.Groups[0] for all groups captures, or subsequent match.Groups[1] for indivdual captured groups
+         * A capture group is anything surrounded by ()
+         * 
+         * Streamreaders are used as IO for basic C# applications
+         * whlie ((line = reader.ReadLine()) != null) is the basic structure for reading line by line
+         * 
+         * Can use [^1] to reference item of index Length - 1
+         * 
+         * Watch for off by one errors :( rubber duck debug them
+         * 
+         * C# Naming Convention is to start methods as Upper Case
+         * Use Ctrl + R, Ctrl + R to rename quickly
+         */
         public static void Main(string[] args)
         {
             // Program Setup
@@ -14,11 +30,11 @@ namespace AoC
             string path = @"C:\Users\cconnolly\source\repos\AoC\AoC\Day2\input.txt";
             List<string> lines = InputParseHelper(path);
 
-            runPart1(lines);
-            runPart2(lines);
+            RunPart1(lines);
+            RunPart2(lines);
         }
 
-        private static void runPart1(List<string> lines)
+        private static void RunPart1(List<string> lines)
         {
             int countValid = 0;
             Regex reg = new Regex(@"(\d+)-(\d+)");
@@ -35,14 +51,14 @@ namespace AoC
                 int max = int.Parse(match.Groups[2].Value);
                 char letter = policy[policy.Length - 1];
 
-                if (isPasswordValidPart1(password, min, max, letter))
+                if (IsPasswordValidPart1(password, min, max, letter))
                     countValid++;
             }
 
             Console.WriteLine("Number of valid passwords for part 1: " + countValid);
         }
 
-        private static Boolean isPasswordValidPart1(string password, int minValue, int maxValue, char character)
+        private static Boolean IsPasswordValidPart1(string password, int minValue, int maxValue, char character)
         {
             int characterCount = 0;
 
@@ -55,7 +71,7 @@ namespace AoC
             return (minValue <= characterCount && characterCount <= maxValue);
         }
 
-        private static void runPart2(List<string> lines) 
+        private static void RunPart2(List<string> lines) 
         {
             int countValid = 0;
             Regex reg = new Regex(@"(\d+)-(\d+)");
@@ -70,9 +86,9 @@ namespace AoC
                 Match match = reg.Match(policy);
                 int pos1 = int.Parse(match.Groups[1].Value);
                 int pos2 = int.Parse(match.Groups[2].Value);
-                string letter = policy[^1].ToString();
+                char letter = policy[^1];
 
-                if (password.Substring(pos1, 1).Equals(letter) ^ password.Substring(pos2, 1).Equals(letter))
+                if (password[pos1].Equals(letter) ^ password[pos2].Equals(letter))
                     countValid++;
             }
 

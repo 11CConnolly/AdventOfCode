@@ -7,6 +7,11 @@ namespace AoC
 {
     class Day1
     {
+        /*
+         * Learned from this Challenge
+         * Use System.Diagnostics.Stopwatch to measure program exeuction time
+         * sw.Start(), sw.Stop(), sw.Elapsed()
+         */
         public static void Main(string[] args)
         {
             // Will need to change this path depending on where the program is running
@@ -14,24 +19,21 @@ namespace AoC
 
             List<int> values = ParseHelper(path);
 
-            int result;
+            int result1, result2;
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            // result = sumTwoTo2020(values);
-            result = sumThreeTo2020(values);
+            result1 = SumTwoTo2020(values);
+            result2 = SumThreeTo2020(values);
 
             sw.Stop();
 
-            if (result < 0)
-                Console.WriteLine("[Error] Error in calculation");
-
-            Console.WriteLine("result is {0} in {1}ms", result, sw.ElapsedTicks);
+            Console.WriteLine("result for part 1 is {0}, for part 2 is {1} completed in {2}ms", result1, result2, sw.ElapsedTicks);
         }
 
         // Answer is 969024
-        private static int sumTwoTo2020
+        private static int SumTwoTo2020
             (List<int> values)
         {
             int a, b;
@@ -51,7 +53,7 @@ namespace AoC
         }
 
         // Answer is 230057040
-        private static int sumThreeTo2020
+        private static int SumThreeTo2020
             (List<int> values)
         {
             int a, b, c;
