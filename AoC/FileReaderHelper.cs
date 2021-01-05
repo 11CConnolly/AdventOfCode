@@ -1,21 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace AoC
 {
-    class FileReaderHelper
+    public class FileReaderHelper
     {
         private string filePath;
 
-        FileReaderHelper(string path)
+        public FileReaderHelper(string path)
         {
             filePath = path;
         }
 
-        public void readFile()
+        public List<string> readAllLinesFromFile()
         {
-            return;
+            List<string> lines = new List<string>();
+
+            string line;
+            StreamReader reader = new StreamReader(filePath);
+
+            while ((line = reader.ReadLine()) != null)
+            {
+                lines.Add(line);
+            }
+
+            return lines;
         }
     }
 }
