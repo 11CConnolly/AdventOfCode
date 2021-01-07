@@ -62,7 +62,7 @@ namespace AoC
                     if (line[countRight].Equals('#'))
                         numberOfTrees++;
                 }
-                Console.WriteLine(numberOfTrees);
+                sumOfNumberOfTrees *= numberOfTrees;
             }
 
             rightMovesArray = new int[] { 1 };
@@ -77,7 +77,8 @@ namespace AoC
                 reader.ReadLine(); // 0
                 while ((line = reader.ReadLine()) != null) // 1
                 {
-                    reader.ReadLine(); // 2
+                    if ((line = reader.ReadLine()) == null)
+                        break;
                     if (countRight < LINE_LENGTH - rightMovesArray[i])
                         countRight += rightMovesArray[i];
                     else
@@ -86,7 +87,7 @@ namespace AoC
                     if (line[countRight].Equals('#'))
                         numberOfTrees++;
                 }
-                Console.WriteLine(numberOfTrees);
+                sumOfNumberOfTrees *= numberOfTrees;
             }
 
             Console.WriteLine(sumOfNumberOfTrees);
