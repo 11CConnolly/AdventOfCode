@@ -9,6 +9,13 @@ namespace AoC
     {
         public static void Main(string[] args)
         {
+            RunPart1();
+            Console.WriteLine("part two");
+            RunPart2();
+        }
+
+        public static void RunPart1()
+        {
             string[] validFields = {
                 "byr",
                 "iyr",
@@ -18,15 +25,6 @@ namespace AoC
                 "ecl",
                 "pid"
             };
-
-            Console.WriteLine("part two");
-            RunPart1(validFields);
-            Console.WriteLine("part two");
-            RunPart2();
-        }
-
-        public static void RunPart1(string[] validFields)
-        {
             string line;
             StreamReader reader = new StreamReader(@"C:\Users\cconnolly\source\repos\AoC\AoC\Day4\input.txt");
 
@@ -61,6 +59,17 @@ namespace AoC
         public static void RunPart2()
         {
 
+        }
+
+        // Inner class
+        public class Passport
+        {
+            HashSet<string> MandatoryFields = new HashSet<string>(){ "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"};
+
+            // Funky new syntax for defining C# functions
+            public bool isYearValid(string value, int low, int high)
+                => int.TryParse(value, out int result)
+                    && result >= low && result <= high;
         }
     }
 }
