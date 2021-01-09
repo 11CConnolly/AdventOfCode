@@ -70,6 +70,10 @@ namespace AoC
             public bool isYearValid(string value, int low, int high)
                 => int.TryParse(value, out int result)
                     && result >= low && result <= high;
+
+            public bool isPidValid(string value)
+                => value.Length == 9
+                    && int.TryParse(value, out int result);
         }
     }
 }
